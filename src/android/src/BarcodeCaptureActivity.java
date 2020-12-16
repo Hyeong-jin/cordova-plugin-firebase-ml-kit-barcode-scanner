@@ -104,7 +104,7 @@ public final class BarcodeCaptureActivity extends    AppCompatActivity
     _GraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(getResources().getIdentifier("graphicOverlay", "id", getPackageName()));
 
     // read parameters from the intent used to launch the activity.
-    DetectionTypes = getIntent().getIntExtra("DetectionTypes", 1234);
+    DetectionTypes = getIntent().getIntExtra("DetectionTypes", (double)1234));
     ViewFinderWidth = getIntent().getDoubleExtra("ViewFinderWidth", .5);
     ViewFinderHeight = getIntent().getDoubleExtra("ViewFinderHeight", .7);
 
@@ -192,7 +192,9 @@ public final class BarcodeCaptureActivity extends    AppCompatActivity
   protected void onDestroy() {
     super.onDestroy();
     if (_Preview != null) {
-      _Preview.release();
+      try{
+        _Preview.release();
+      } catch (Exception e) {}
     }
   }
 
